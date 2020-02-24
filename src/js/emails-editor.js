@@ -149,6 +149,7 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
             }
             emailArray.push(login + "@" + domains[randomDomain]);
             generateEmailList();
+            mailCount();
         }
 
         // button Get Emails Count
@@ -201,6 +202,7 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
                 });
                 emailArray = validEmailArray;
                 generateEmailList();
+                mailCount();
             })
         }
 
@@ -229,12 +231,8 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
             generateEmailList();
             mailCountCreate();
             setList();
+            mailCount();
         });
 
     }
 }
-
-/*
-todo Адаптивность формы и блоков email
-todo Документация 
- */
