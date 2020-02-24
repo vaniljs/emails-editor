@@ -1,0 +1,142 @@
+body
+  background-color: #3C3F41
+
+.wrapper_emailseditor
+  font-family: "Open sans", sans-serif
+  display: block
+  max-width: 540px;
+  width: 100%
+  &:first-child
+    margin-bottom: 50px
+  .headwrapper_emailseditor
+    position: relative
+    background: #F8F8F7
+    padding: 32px 50px 24px 50px
+    border-radius: 8px 8px 0 0
+  .head_emailseditor
+    font-size: 20px
+    color: #050038
+    margin: 0 0 25px 0
+  .editorwrapper_emailseditor
+    display: block
+    width: 100%
+    height: 96px
+    padding: 7px 6px
+    background-color: #fff
+    border: 1px solid #C3C2CF
+    box-sizing: border-box
+    border-radius: 4px
+    cursor: text
+    overflow-y: auto
+    overflow-x: hidden
+    &::-webkit-scrollbar
+      border-radius: 50%
+      width: 3px
+    &::-webkit-scrollbar-track
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+    &::-webkit-scrollbar-thumb
+      background-color: darkgrey
+      outline: 1px solid slategrey
+    .inputemail_emailseditor
+      float: left
+      min-width: 50px
+      &:focus
+        outline: none
+      .inputemailplaceholder_emailseditor
+        color: #C3C2CF
+        font-size: 14px
+        width: auto
+        display: inline-block
+        hyphens: auto
+    ul
+      list-style: none
+      height: 0
+      margin: 0
+      padding: 0
+      cursor: default
+      li
+        position: relative
+        display: inline-block
+        float: left
+        color: #050038
+        font-size: 15px
+        background-color: rgba(102, 153, 255, 0.2)
+        padding: 4px 24px 5px 10px
+        margin: 0 10px 5px 0
+        border-radius: 100px
+        line-height: 1
+        user-select: none
+        max-width: 100%
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+        .error
+          background-size: 1px 1em
+          box-shadow: inset 0 0 #e0ebff, inset 0 -0.15em #9c0808
+          display: inline
+        .delete_emailseditor
+          position: absolute
+          right: 0
+          top: 0
+          cursor: pointer
+          display: block
+          width: 20px
+          height: 100%
+          border-radius: 0 100px 100px 0
+          transition: .3s all
+          &:hover
+            background-color: rgba(28, 36, 64, 0.2)
+            transition: .3s all
+          &:after
+            display: block
+            content: ""
+            position: absolute
+            right: 5px
+            top: 0
+            bottom: 0
+            margin: auto
+            width: 11px
+            height: 2px
+            background-color: #050038
+            transform: rotate(45deg)
+          &:before
+            display: block
+            content: ""
+            position: absolute
+            right: 5px
+            top: 0
+            bottom: 0
+            margin: auto
+            width: 11px
+            height: 2px
+            background-color: #050038
+            transform: rotate(135deg)
+  .inputcounter_emailseditor
+    cursor: default
+    position: absolute
+    margin: 0
+    padding: 2px 5px 5px 5px
+    right: 55px
+    bottom: 93px
+    font-size: 13px
+    color: #919191
+    background-color: #fff
+    border-radius: 0 4px 0 0
+  .footer_emailseditor
+    padding: 24px 50px 26px 50px
+    background-color: #fff
+    border-radius: 0 0 8px 8px
+    button
+      color: #fff
+      font-size: 14px
+      letter-spacing: .03rem
+      padding: 12px 15px
+      margin-bottom: 5px
+      background: #4262FF
+      border: none
+      border-radius: 6px
+      cursor: pointer
+      outline: none
+      margin-right: 17px
+      .btndel_emailseditor
+        margin-left: 16px
