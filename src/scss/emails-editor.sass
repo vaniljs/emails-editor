@@ -1,7 +1,7 @@
 .wrapper_emailseditor
   font-family: "Open sans", sans-serif
   display: block
-  max-width: 540px;
+  max-width: 540px
   width: 100%
   &:first-child
     margin-bottom: 50px
@@ -52,33 +52,35 @@
       padding: 0
       cursor: default
       li
-        position: relative
-        display: inline-block
+        display: inline-flex
+        align-items: center
         float: left
         color: #050038
         font-size: 15px
         background-color: rgba(102, 153, 255, 0.2)
-        padding: 4px 24px 5px 10px
+        padding: 4px 0px 5px 10px
         margin: 0 10px 5px 0
         border-radius: 100px
         line-height: 1
         user-select: none
         max-width: 100%
-        white-space: nowrap
-        overflow: hidden
-        text-overflow: ellipsis
+        .email__emailseditor
+          display: inline-block
+          max-width: calc(100% - 0px)
+          white-space: nowrap
+          overflow: hidden
+          text-overflow: ellipsis
         .error
           background-size: 1px 1em
           box-shadow: inset 0 0 #e0ebff, inset 0 -0.15em #9c0808
           display: inline
         .delete_emailseditor
-          position: absolute
-          right: 0
-          top: 0
+          position: relative
           cursor: pointer
-          display: block
+          display: inline-block
           width: 20px
           height: 100%
+          padding-right: 5px
           border-radius: 0 100px 100px 0
           transition: .3s all
           &:hover
