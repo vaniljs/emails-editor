@@ -120,7 +120,7 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
         function pushArrayEmail() {
             inputEmail.innerText.replace(/\r?\n?\s/g, "").split(",").map(item => {
                 if (!emailArray.includes(item) && item && item !== placeholder.replace(/\r?\n?\s/g, "")) {
-                    emailArray.push(item);
+                    emailArray = [...emailArray, item];
                     inputEmail.innerHTML = "";
                     generateEmailList()
                 } else {
