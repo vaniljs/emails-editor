@@ -7,7 +7,8 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
                 "gmail.com",
                 "mail.ru",
                 "miro.com"
-            ];
+            ],
+            regxEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
         // main wrapper
         let wrapperEmailsEditor = document.createElement("div");
@@ -49,12 +50,14 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
         function generateEmailList() {
             emailListUl.innerHTML = "";
             emailArray.map(item => {
-                let li = document.createElement("li");
-                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(item)) {
-                    li.innerHTML = "<span class='email__emailseditor'>" + item.toString() + "</span><span class='delete_emailseditor'/>";
+                let li = document.createElement("li"),
+                     classError = "";
+                if (regxEmail.test(item)) {
+                    classError = ""
                 } else {
-                    li.innerHTML = "<span class='email__emailseditor error'>" + item.toString() + "</span><span class='delete_emailseditor'/>";
+                    classError = "error"
                 }
+                li.innerHTML = `<span class='email__emailseditor ${classError}'>${item}</span><span class='delete_emailseditor'/>`;
                 emailListUl.append(li);
 
             });
@@ -63,11 +66,14 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
         // delete email on click at button
         document.getElementById(id).addEventListener("click", (el) => {
             if (el.target.classList.contains('delete_emailseditor')) {
-                listenDeleteEmail(el.target.parentNode.querySelector('.email__emailseditor').innerHTML);
+                let email = el.target.parentNode.querySelector('.email__emailseditor').innerHTML;
+                listenDeleteEmail(email);
                 el.target.parentNode.remove();
-                emailArray = [...document.getElementById(id).querySelectorAll('li')];
+                let indexEmail = emailArray.findIndex( currentValue => currentValue === email);
+                emailArray.splice(indexEmail, 1);
                 mailCounter ? mailCount() : false;
                 haveEmails(emailArray);
+                inputEmail.blur();
             }
         });
 
@@ -159,7 +165,7 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
         getEmailCount.addEventListener("click", () => {
             let quantityValidEmail = 0;
             emailArray.map(item => {
-                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(item)) {
+                if (regxEmail.test(item)) {
                     quantityValidEmail += 1;
                 }
             });
@@ -198,7 +204,7 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
             footerWrapper.append(btnDel);
             btnDel.addEventListener('click', () => {
                 let validEmailArray = emailArray.filter((item) => {
-                    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(item)
+                    return regxEmail.test(item)
                 });
                 emailArray = validEmailArray;
                 generateEmailList();
