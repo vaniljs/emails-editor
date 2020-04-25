@@ -1,7 +1,7 @@
 # Emails Editor Library
 ![design template](Test-task-share.png)
 
- [Demo](http://qeru.ru/emails-editor/)
+ [Demo](http://xn--80adklohlho5j.xn--p1ai/emails-editor)
 
 Advantages and opportunities:
 - Each entered email is formed into a block. You can delete a block.
