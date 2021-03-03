@@ -11,22 +11,17 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
             regxEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
         // main wrapper
-        let wrapperEmailsEditor = document.createElement("div");
-        wrapperEmailsEditor.className = "wrapper_emailseditor";
+        let wrapperEmailsEditor = createEl('div', {'class': 'wrapper_emailseditor'});
 
         // head wrapper
-        let headWrapper = document.createElement("div");
-        headWrapper.className = "headwrapper_emailseditor";
+        let headWrapper = createEl('div', {'class': 'headwrapper_emailseditor'});
 
         // head
-        let headEmailsEditor = document.createElement("p");
-        headEmailsEditor.className = "head_emailseditor";
-        headEmailsEditor.innerHTML = "Share <b>Board name</b> with others";
+        let headEmailsEditor = createEl('p', {'class': 'head_emailseditor'}, 'Share <b>Board name</b> with others');
         headWrapper.append(headEmailsEditor);
 
         // editor wrapper
-        let editorWrapper = document.createElement("div");
-        editorWrapper.className = "editorwrapper_emailseditor";
+        let editorWrapper = createEl('div', {'class': 'editorwrapper_emailseditor'});
         headWrapper.append(editorWrapper);
 
         // focus on the first click on empty editor wrapper
@@ -43,14 +38,14 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
         });
 
         // insert ul
-        let emailListUl = document.createElement("ul");
+        let emailListUl = createEl('ul');
         editorWrapper.append(emailListUl);
 
         // email list generate from array
         function generateEmailList() {
             emailListUl.innerHTML = "";
             emailArray.map(item => {
-                let li = document.createElement("li"),
+                let li = createEl('li'),
                      classError = "";
                 if (regxEmail.test(item)) {
                     classError = ""
@@ -78,14 +73,11 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
         });
 
         // create input for write emails
-        let inputEmail = document.createElement("div");
-        inputEmail.className = "inputemail_emailseditor";
-        inputEmail.innerHTML = " ";
-        inputEmail.setAttribute("contenteditable", true);
+        let inputEmail = createEl('div', {'class': 'inputemail_emailseditor', 'contenteditable': true}, ' ');
         editorWrapper.append(inputEmail);
 
         // insert placeholder in input
-        let inputEmailPlaceholder = "<span class='inputemailplaceholder_emailseditor'>" + placeholder + "</span>";
+        let inputEmailPlaceholder = `<span class='inputemailplaceholder_emailseditor'>${placeholder}</span>`;
         inputEmail.innerHTML = inputEmailPlaceholder;
         inputEmail.addEventListener('click', () => {
             if (inputEmail.querySelector('span') && inputEmail.querySelector('span').innerHTML === placeholder) {
@@ -137,13 +129,10 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
         }
 
         // footer
-        let footerWrapper = document.createElement("div");
-        footerWrapper.className = "footer_emailseditor";
+        let footerWrapper = createEl('div', {'class': 'footer_emailseditor'});
 
         // button Add Email
-        let addEmail = document.createElement("button");
-        addEmail.className = "addemail_emailseditor";
-        addEmail.innerHTML = "Add email";
+        let addEmail = createEl('button', {'class': 'addemail_emailseditor'}, 'Add email');
         addEmail.addEventListener('click', addEmailRandom);
         function addEmailRandom() {
             let login = "",
@@ -159,9 +148,7 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
         }
 
         // button Get Emails Count
-        let getEmailCount = document.createElement("button");
-        getEmailCount.className = "getemailscount__emailseditor";
-        getEmailCount.innerHTML = "Get emails count";
+        let getEmailCount = createEl('button', {'class': 'getemailscount__emailseditor'}, 'Get emails count');
         getEmailCount.addEventListener("click", () => {
             let quantityValidEmail = 0;
             emailArray.map(item => {
@@ -181,9 +168,7 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
 
 
         // Option: input counter
-        const inputCounter = document.createElement("p");
-        inputCounter.className = "inputcounter_emailseditor";
-        inputCounter.innerText = emailArray.length;
+        const inputCounter = createEl('p', {'class': 'inputcounter_emailseditor'}, emailArray.length);
 
         function mailCountCreate() {
             if (mailCounter) {
@@ -198,9 +183,7 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
 
         // Option: button for delete all invalid email
         if (btnDeleteInvalid) {
-            let btnDel = document.createElement('button');
-            btnDel.className = "btndel_emailseditor";
-            btnDel.innerHTML = "Delete all invalid emails";
+            let btnDel = createEl('button', {'class': 'btndel_emailseditor'}, 'Delete all invalid emails');
             footerWrapper.append(btnDel);
             btnDel.addEventListener('click', () => {
                 let validEmailArray = emailArray.filter((item) => {
@@ -241,4 +224,19 @@ function EmailsEditor({idElement: id, mailCounter, btnDeleteInvalid, setEmail}) 
         });
 
     }
+}
+
+
+// Constructor Create Elements
+function createEl(tag, attributes, inner) {
+    let element = document.createElement(tag)
+    if (attributes) {
+        for (let key in attributes) {
+            element.setAttribute(key, attributes[key])
+        }
+    }
+    if (inner) {
+        element.innerHTML = inner
+    }
+    return element
 }
